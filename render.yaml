@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: full-clear
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app --workers 2 --bind 0.0.0.0:$PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: full-clear-db
+          property: connectionString
+      - key: APP_BASE_URL
+        value: https://full-clear.onrender.com   # change to your real URL
+      - key: DODO_ENV
+        value: test                               # switch to live when you go live
+      - key: DODO_PAYMENTS_API_KEY
+        sync: false
+      - key: DODO_WEBHOOK_SECRET
+        sync: false
+      - key: DODO_PRODUCT_PRO
+        sync: false
+      - key: DODO_PRODUCT_TOOLKIT
+        sync: false
+
+databases:
+  - name: full-clear-db
+    plan: free
