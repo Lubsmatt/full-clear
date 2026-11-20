@@ -16,9 +16,7 @@ services:
           name: full-clear-db
           property: connectionString
       - key: APP_BASE_URL
-        value: https://full-clear.onrender.com   # change to your real URL
-      - key: DODO_ENV
-        value: test                               # switch to live when you go live
+        value: https://full-clear.onrender.com
       - key: DODO_PAYMENTS_API_KEY
         sync: false
       - key: DODO_WEBHOOK_SECRET
