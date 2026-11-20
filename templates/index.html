@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Full Clear | Hit 100% in every game{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Completion tracker for open-world games</p>
+    <h1>Know exactly what is left to <span class="glow">100%</span>.</h1>
+    <p class="lead">Build your own mission and collectible lists, tick them off, and watch your progress climb. Your account is private, so your save is yours alone.</p>
+    <div class="cta">
+      {% if me %}<a class="btn" href="{{ url_for('dashboard') }}">Open dashboard</a>
+      {% else %}<a class="btn" href="{{ url_for('signup') }}">Start free</a><a class="btn ghost" href="{{ url_for('login') }}">Log in</a>{% endif %}
+    </div>
+    <ul class="stats">
+      <li><b>1</b><span>game free</span></li>
+      <li><b>0</b><span>game files copied</span></li>
+      <li><b>24/7</b><span>on any device</span></li>
+    </ul>
+  </div>
+  <div class="hero-art">
+    {% include "_hero.html" %}
+  </div>
+</section>
+
+<section class="grid3">
+  <article class="card">
+    <h3>Your lists, your rules</h3>
+    <p>Paste a list from a guide or your own notes, one item per line. Group items into categories like missions, collectibles and side activities.</p>
+  </article>
+  <article class="card">
+    <h3>Progress you can see</h3>
+    <p>Every category and every game gets a live percentage. Pro adds a 14-day activity chart so you can see your pace.</p>
+  </article>
+  <article class="card">
+    <h3>Private by design</h3>
+    <p>Each player has their own login and their own data. Nobody else can open, edit or see your games.</p>
+  </article>
+</section>
+
+<section class="split">
+  <img class="pad" src="{{ url_for('static', filename='img/controller.svg') }}" alt="A glowing game controller" width="520" height="360" loading="lazy">
+  <div>
+    <h2>Make guides? Get the Creator Toolkit.</h2>
+    <p class="lead">Script templates, hook formulas, a thumbnail checklist and a 30-day posting calendar for YouTube, TikTok and Shorts.</p>
+    <a class="btn" href="{{ url_for('store') }}#toolkit">See the Toolkit</a>
+  </div>
+</section>
+{% endblock %}

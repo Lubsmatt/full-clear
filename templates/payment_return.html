@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Payment | Full Clear{% endblock %}
+{% block content %}
+<section class="auth one">
+  <div class="panel center" id="pay" data-key="{{ key }}" data-next="{{ url_for('toolkit') if key == 'toolkit' else url_for('dashboard') }}">
+    {% if status in ('failed', 'cancelled') %}
+      <h1>Payment not completed</h1>
+      <p class="lead">No money was taken. You can try again from the store.</p>
+      <a class="btn" href="{{ url_for('store') }}">Back to store</a>
+    {% else %}
+      <h1 id="pay-title">Unlocking your purchase</h1>
+      <div class="loader" aria-hidden="true"></div>
+      <p class="lead" id="pay-msg">{{ prod.name if prod else 'Your purchase' }} will unlock in a few seconds. This page updates by itself.</p>
+      <a class="btn ghost" href="{{ url_for('dashboard') }}">Go to dashboard</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

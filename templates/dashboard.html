@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "_ring.html" import ring %}
+{% block title %}Dashboard | Full Clear{% endblock %}
+{% block content %}
+<section class="head">
+  <div>
+    <p class="eyebrow">Player dashboard</p>
+    <h1>{{ me.username }}</h1>
+    <p class="lead">{{ done }} of {{ total }} items cleared across {{ games|length }} game{{ '' if games|length == 1 else 's' }}.</p>
+  </div>
+  {{ ring(pct, 132) }}
+</section>
+
+<section>
+  <h2>Your games</h2>
+  <div class="grid3">
+    {% for x in games %}
+    <a class="card game-card" href="{{ url_for('game_page', gid=x.game.id) }}">
+      <h3>{{ x.game.name }}</h3>
+      <div class="meter"><i style="width: {{ x.pct }}%"></i></div>
+      <p class="muted">{{ x.done }} / {{ x.total }} · {{ x.pct }}%</p>
+    </a>
+    {% else %}
+    <div class="card"><p class="muted">No games yet. Add the first one below.</p></div>
+    {% endfor %}
+  </div>
+
+  {% if can_add %}
+  <form class="inline" method="post" action="{{ url_for('game_new') }}">
+    <input type="hidden" name="csrf" value="{{ csrf_token }}">
+    <label class="sr" for="gname">Game name</label>
+    <input id="gname" name="name" placeholder="Game name, for example GTA 6" maxlength="80" required>
+    <button class="btn">Add game</button>
+  </form>
+  {% else %}
+  <div class="card lock">
+    <h3>Free plan: 1 game</h3>
+    <p class="muted">Unlock unlimited games with Full Clear Pro.</p>
+    <a class="btn" href="{{ url_for('store') }}#pro">Get Pro</a>
+  </div>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Activity, last 14 days</h2>
+  {% if activity is not none %}
+  <div class="chart" role="img" aria-label="Items cleared per day for the last 14 days">
+    {% for a in activity %}
+    <div class="col"><span class="n">{{ a.n if a.n else '' }}</span><div class="bar"><i style="height: {{ a.h }}%"></i></div><span class="d">{{ a.label }}</span></div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="card lock">
+    <h3>Pro feature</h3>
+    <p class="muted">See how many items you clear each day. Included with Full Clear Pro.</p>
+    <a class="btn" href="{{ url_for('store') }}#pro">Unlock the chart</a>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

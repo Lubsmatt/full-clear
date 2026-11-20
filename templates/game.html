@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% from "_ring.html" import ring %}
+{% block title %}{{ game.name }} | Full Clear{% endblock %}
+{% block content %}
+<section class="head">
+  <div>
+    <p class="eyebrow"><a href="{{ url_for('dashboard') }}">Dashboard</a> / Game</p>
+    <h1>{{ game.name }}</h1>
+    <p class="lead"><span id="g-done">{{ stats.done }}</span> of <span id="g-total">{{ stats.total }}</span> cleared</p>
+  </div>
+  {{ ring(stats.pct, 132, 'g-ring') }}
+</section>
+
+<div class="tools">
+  <label class="sr" for="q">Search</label>
+  <input id="q" type="search" placeholder="Search items and notes">
+  <div class="seg" role="group" aria-label="Filter">
+    <button type="button" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" data-filter="open" aria-pressed="false">Open</button>
+    <button type="button" data-filter="done" aria-pressed="false">Done</button>
+  </div>
+</div>
+
+{% for c in stats.cats %}
+<section class="cat" id="cat{{ c.cat.id }}">
+  <header>
+    <h2>{{ c.cat.name }}</h2>
+    <span class="muted"><span id="c{{ c.cat.id }}-done">{{ c.done }}</span> / <span id="c{{ c.cat.id }}-total">{{ c.total }}</span></span>
+  </header>
+  <div class="meter"><i id="c{{ c.cat.id }}-bar" style="width: {{ c.pct }}%"></i></div>
+  <ul class="items">
+    {% for it in c.cat.items %}
+    <li class="item{{ ' done' if it.done }}" data-id="{{ it.id }}" data-text="{{ (it.text ~ ' ' ~ it.note)|lower }}">
+      <button type="button" class="check" role="checkbox" aria-checked="{{ 'true' if it.done else 'false' }}" aria-label="Mark done: {{ it.text }}"></button>
+      <span class="txt">{{ it.text }}</span>
+      <form method="post" action="{{ url_for('item_delete', iid=it.id) }}" data-confirm="Delete this item?">
+        <input type="hidden" name="csrf" value="{{ csrf_token }}"><button class="ic" aria-label="Delete item">Delete</button>
+      </form>
+      <input class="note" data-note="{{ it.id }}" value="{{ it.note }}" maxlength="500" placeholder="Note" aria-label="Note for {{ it.text }}">
+    </li>
+    {% else %}
+    <li class="empty muted">No items yet. Paste some below.</li>
+    {% endfor %}
+  </ul>
+  <form method="post" action="{{ url_for('items_add', cid=c.cat.id) }}" class="add">
+    <input type="hidden" name="csrf" value="{{ csrf_token }}">
+    <label class="sr" for="t{{ c.cat.id }}">Add items to {{ c.cat.name }}</label>
+    <textarea id="t{{ c.cat.id }}" name="text" rows="2" placeholder="Add items, one per line"></textarea>
+    <button class="btn sm">Add</button>
+  </form>
+  <form method="post" action="{{ url_for('category_delete', cid=c.cat.id) }}" data-confirm="Delete this category and all its items?">
+    <input type="hidden" name="csrf" value="{{ csrf_token }}"><button class="ic">Delete category</button>
+  </form>
+</section>
+{% endfor %}
+
+<section class="panel">
+  <h2>New category</h2>
+  <form class="inline" method="post" action="{{ url_for('category_new', gid=game.id) }}">
+    <input type="hidden" name="csrf" value="{{ csrf_token }}">
+    <label class="sr" for="cname">Category name</label>
+    <input id="cname" name="name" placeholder="For example: Races, Hidden spots, Weapons" maxlength="60" required>
+    <button class="btn">Create</button>
+  </form>
+</section>
+
+<form method="post" action="{{ url_for('game_delete', gid=game.id) }}" data-confirm="Delete this game and everything in it? This cannot be undone.">
+  <input type="hidden" name="csrf" value="{{ csrf_token }}"><button class="ic danger">Delete this game</button>
+</form>
+{% endblock %}

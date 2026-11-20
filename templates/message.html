@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} | Full Clear{% endblock %}
+{% block content %}
+<section class="auth one">
+  <div class="panel">
+    <h1>{{ title }}</h1>
+    <p class="lead">{{ body }}</p>
+    <a class="btn" href="{{ url_for('index') }}">Back to base</a>
+  </div>
+</section>
+{% endblock %}

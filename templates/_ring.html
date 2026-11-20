@@ -1,0 +1,8 @@
+{% macro ring(pct, size=120, id='') %}
+<svg class="ring" width="{{ size }}" height="{{ size }}" viewBox="0 0 120 120" role="img" aria-label="{{ pct }} percent complete">
+  <circle class="ring-track" cx="60" cy="60" r="52" fill="none" stroke-width="9"/>
+  <circle class="ring-fill" {% if id %}id="{{ id }}"{% endif %} cx="60" cy="60" r="52" fill="none" stroke-width="9" stroke-linecap="round"
+          stroke-dasharray="326.73" stroke-dashoffset="{{ (326.73 * (1 - pct / 100))|round(2) }}" transform="rotate(-90 60 60)"/>
+  <text class="ring-num" x="60" y="68" text-anchor="middle">{{ pct }}%</text>
+</svg>
+{% endmacro %}

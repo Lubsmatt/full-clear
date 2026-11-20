@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Creator Toolkit | Full Clear{% endblock %}
+{% block content %}
+<section class="head">
+  <div>
+    <p class="eyebrow">Unlocked</p>
+    <h1>Creator Toolkit</h1>
+    <p class="lead">Everything you need to plan, script and post game guides without staring at a blank page.</p>
+  </div>
+  <img class="pimg" src="{{ url_for('static', filename='img/badge-toolkit.svg') }}" alt="" width="120" height="120">
+</section>
+
+<section class="panel">
+  <h2>1. Guide video script template</h2>
+  <p class="muted">Use for any tutorial or collectible guide. Aim for 3 to 6 minutes.</p>
+  <ol class="steps">
+    <li><b>Hook (0:00 to 0:10).</b> State the result: "Here is how to find every [thing] in [game] without wasting an hour."</li>
+    <li><b>Proof (0:10 to 0:25).</b> Show the finished result or the count on screen, so viewers know the guide works.</li>
+    <li><b>Route (main body).</b> Walk through the items in the order a player would actually collect them. Put the item count on screen as you go.</li>
+    <li><b>Mistakes (last third).</b> Show the one or two things players commonly miss and how to avoid them.</li>
+    <li><b>Close (last 15 seconds).</b> Point to the next video and tell viewers where they can get your checklist.</li>
+  </ol>
+</section>
+
+<section class="panel">
+  <h2>2. Hook formulas for Shorts and TikTok</h2>
+  <p class="muted">Fill the brackets, then test two versions of the same clip.</p>
+  <ul class="ticks">
+    <li>"You are missing [number] [items] in [game]. Here is the fastest way to find them."</li>
+    <li>"Do not start [mission or area] until you have done this."</li>
+    <li>"I tracked every [item] in [game] so you do not have to."</li>
+    <li>"[Number] mistakes that cost players [reward] in [game]."</li>
+    <li>"The easiest way to reach 100% in [game], step by step."</li>
+    <li>"I found this by accident in [game] and nobody is talking about it."</li>
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>3. Thumbnail checklist</h2>
+  <ul class="ticks">
+    <li>One clear subject, large enough to read on a phone.</li>
+    <li>Three words of text or fewer, with strong contrast against the background.</li>
+    <li>A number in the image when the video is a count or list.</li>
+    <li>One bright accent color that matches your channel, used on every thumbnail.</li>
+    <li>Only game footage you recorded yourself. Do not copy publisher key art or logos.</li>
+    <li>Check it at the size of a postage stamp. If you cannot read it, simplify.</li>
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>4. Thirty-day posting calendar</h2>
+  <p class="muted">Four posts a week. Swap the topics for your own game.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Week</th><th>Monday</th><th>Wednesday</th><th>Friday</th><th>Sunday</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Beginner mistakes</td><td>Fastest early-game route</td><td>Easy-to-miss collectible</td><td>Progress update</td></tr>
+      <tr><td>2</td><td>Mission walkthrough</td><td>Settings that help</td><td>Hidden location</td><td>Viewer questions</td></tr>
+      <tr><td>3</td><td>Common bugs and fixes</td><td>Side activity guide</td><td>Checklist tour</td><td>Progress update</td></tr>
+      <tr><td>4</td><td>Mid-game tips</td><td>Completion percentage explained</td><td>Best use of time</td><td>Month recap</td></tr>
+    </tbody>
+  </table></div>
+</section>
+{% endblock %}

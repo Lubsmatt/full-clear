@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Sign up | Full Clear{% endblock %}
+{% block content %}
+<section class="auth">
+  <div class="panel">
+    <p class="eyebrow">New player</p>
+    <h1>Create your account</h1>
+    <form method="post" autocomplete="on">
+      <input type="hidden" name="csrf" value="{{ csrf_token }}">
+      <label for="username">Gamertag</label>
+      <input id="username" name="username" value="{{ username }}" required minlength="3" maxlength="24" pattern="[A-Za-z0-9_]+" autocomplete="username">
+      <label for="email">Email</label>
+      <input id="email" type="email" name="email" value="{{ email }}" required maxlength="254" autocomplete="email">
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" required minlength="8" maxlength="200" autocomplete="new-password">
+      <p class="hint">At least 8 characters.</p>
+      <button class="btn block">Create account</button>
+    </form>
+    <p class="hint">By signing up you agree to the <a href="{{ url_for('terms') }}">Terms</a> and <a href="{{ url_for('privacy') }}">Privacy Policy</a>.</p>
+    <p class="hint">Already playing? <a href="{{ url_for('login') }}">Log in</a></p>
+  </div>
+  <img class="side-art" src="{{ url_for('static', filename='img/controller.svg') }}" alt="" width="420" height="290">
+</section>
+{% endblock %}

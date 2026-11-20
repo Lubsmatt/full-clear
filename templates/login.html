@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Log in | Full Clear{% endblock %}
+{% block content %}
+<section class="auth">
+  <div class="panel">
+    <p class="eyebrow">Welcome back</p>
+    <h1>Log in</h1>
+    <form method="post">
+      <input type="hidden" name="csrf" value="{{ csrf_token }}">
+      {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+      <label for="identifier">Gamertag or email</label>
+      <input id="identifier" name="identifier" value="{{ identifier }}" required maxlength="254" autocomplete="username">
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" required maxlength="200" autocomplete="current-password">
+      <button class="btn block">Log in</button>
+    </form>
+    <p class="hint">New here? <a href="{{ url_for('signup') }}">Create an account</a></p>
+  </div>
+  <img class="side-art" src="{{ url_for('static', filename='img/controller.svg') }}" alt="" width="420" height="290">
+</section>
+{% endblock %}

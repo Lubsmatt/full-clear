@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ {'terms': 'Terms', 'privacy': 'Privacy', 'refunds': 'Refunds'}[page] }} | Full Clear{% endblock %}
+{% block content %}
+<section class="panel legal">
+  {% if page == 'terms' %}
+  <h1>Terms of use</h1>
+  <p class="muted">Starter text. Review it, add your business details and have it checked before you take real payments.</p>
+  <h2>The service</h2>
+  <p>Full Clear is a completion tracker. You enter your own lists and progress. We do not provide game files, maps or content from any game publisher.</p>
+  <h2>Your account</h2>
+  <p>You are responsible for your password and for what happens in your account. Do not share it. You must be old enough to enter a contract in your country, or have a parent or guardian agree for you.</p>
+  <h2>Paid unlocks</h2>
+  <p>Paid products are one-time purchases processed by Dodo Payments, which acts as the seller of record. Access is tied to your account and delivered digitally.</p>
+  <h2>Acceptable use</h2>
+  <p>Do not attack the service, scrape other players' data, or use it to break the law. We may suspend accounts that do.</p>
+  <h2>Independence</h2>
+  <p>Full Clear is an independent fan tool. Game names are used only to describe compatibility and belong to their owners.</p>
+  <h2>Contact</h2>
+  <p>Replace this line with your support email address.</p>
+  {% elif page == 'privacy' %}
+  <h1>Privacy policy</h1>
+  <p class="muted">Starter text. Review it and add your business details before launch.</p>
+  <h2>What we store</h2>
+  <p>Your gamertag, email address, a hashed password, and the games, lists and notes you create. We never store card details. Payments are handled by Dodo Payments.</p>
+  <h2>How we use it</h2>
+  <p>To run your account, show your progress, and unlock what you bought. We do not sell your data.</p>
+  <h2>Cookies</h2>
+  <p>We use one session cookie to keep you logged in and protect forms. Your theme choice is saved in your browser.</p>
+  <h2>Your choices</h2>
+  <p>You can delete any game at any time. To delete your account and data, email the support address below.</p>
+  <h2>Contact</h2>
+  <p>Replace this line with your support email address.</p>
+  {% else %}
+  <h1>Refund policy</h1>
+  <p class="muted">Starter text. Set the window that matches your Dodo Payments settings.</p>
+  <p>If a paid unlock does not work as described, contact us within 7 days of purchase and we will help or refund you. Refunds are issued to the original payment method through Dodo Payments, and access to the product ends when a refund is issued.</p>
+  <h2>Contact</h2>
+  <p>Replace this line with your support email address.</p>
+  {% endif %}
+</section>
+{% endblock %}
