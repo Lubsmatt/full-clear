@@ -90,7 +90,7 @@ def products():
             "tagline": "Unlimited games and your activity history.",
             "features": ["Track unlimited games", "14-day activity chart on your dashboard",
                          "Supporter badge on your profile"],
-            "product_id": os.environ.get("DODO_PRODUCT_PRO", "").strip(),
+            "product_id": os.environ.get("DODO_PRODUCT_PRO", "pdt_0NsLkgfYr91QmaYB1tDCs").strip(),
         },
         "toolkit": {
             "name": "Creator Toolkit",
@@ -98,7 +98,7 @@ def products():
             "tagline": "Scripts, hooks and a 30-day calendar for guide creators.",
             "features": ["Video script templates", "Hook formulas for Shorts and TikTok",
                          "Thumbnail checklist", "30-day posting calendar"],
-            "product_id": os.environ.get("DODO_PRODUCT_TOOLKIT", "").strip(),
+            "product_id": os.environ.get("DODO_PRODUCT_TOOLKIT", "pdt_0NsLns4rH554jhM826eSu").strip(),
         },
     }
 
