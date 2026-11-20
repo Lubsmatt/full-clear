@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+  <defs><filter id="g"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g filter="url(#g)">
+    <polygon points="48,6 84,27 84,69 48,90 12,69 12,27" fill="#0a1020" stroke="#ff3dd1" stroke-width="3"/>
+    <rect x="26" y="32" width="44" height="32" rx="6" fill="none" stroke="#22e4ff" stroke-width="4"/>
+    <polygon points="43,40 43,56 57,48" fill="#ff3dd1"/>
+    <path d="M32 72 h32" stroke="#22e4ff" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>
