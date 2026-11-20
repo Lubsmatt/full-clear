@@ -25,6 +25,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 db = SQLAlchemy()
 log = logging.getLogger("fullclear")
 
+# Dodo Payments mode. "live" takes real money. Change to "test" to try test products.
+DODO_MODE = "live"
+SITE_URL = "https://full-clear.onrender.com"
+
 MAX_FREE_GAMES = 1
 MAX_ITEMS_PER_GAME = 2000
 MAX_LINES_PER_ADD = 200
@@ -115,7 +119,7 @@ def create_app(test_config=None):
     uri = os.environ.get("DATABASE_URL", "sqlite:///fullclear.db")
     if uri.startswith("postgres://"):
         uri = uri.replace("postgres://", "postgresql://", 1)
-    base = os.environ.get("APP_BASE_URL", "http://localhost:5000").rstrip("/")
+    base = os.environ.get("APP_BASE_URL", SITE_URL).rstrip("/")
     secret = os.environ.get("SECRET_KEY")
     if not secret:
         secret = secrets.token_hex(32)
@@ -464,7 +468,7 @@ def create_app(test_config=None):
             flash("Payments are not switched on yet. Please check back soon.", "warn")
             return redirect(url_for("store"))
         host = ("https://live.dodopayments.com"
-                if os.environ.get("DODO_ENV", "test") == "live" else "https://test.dodopayments.com")
+                if DODO_MODE == "live" else "https://test.dodopayments.com")
         body = {
             "product_cart": [{"product_id": prod["product_id"], "quantity": 1}],
             "customer": {"email": g.user.email, "name": g.user.username},
